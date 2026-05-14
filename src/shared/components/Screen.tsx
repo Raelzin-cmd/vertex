@@ -1,14 +1,20 @@
 import { ReactNode } from "react"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { SafeAreaView, StyleSheet } from "react-native"
+
+import { colors } from "../../theme/colors"
 
 type Props = {
     children: ReactNode
 }
 
 export function Screen({ children }: Props) {
-    return (
-        <SafeAreaView className="flex-1 bg-[#09090B] px-4">
-            {children}
-        </SafeAreaView>
-    )
+    return <SafeAreaView style={styles.container}>{children}</SafeAreaView>
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.background,
+        paddingHorizontal: 16
+    }
+})
