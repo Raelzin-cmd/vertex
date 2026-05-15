@@ -1,5 +1,40 @@
-import { SignUpScreen } from "../src/features/auth/screens/SignUpScreen"
+import { ActivityIndicator, View } from "react-native"
+import { useAuth } from "../src/features/auth/hooks/AuthContext"
+import { LoginScreen } from "../src/features/auth/screens/LoginScreen"
+import { colors } from "../src/theme/colors"
 
 export default function Home() {
-    return <SignUpScreen />
+    const { session, loading } = useAuth()
+
+    if (loading) {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    backgroundColor: colors.background,
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
+                <ActivityIndicator color="#FFF" />
+            </View>
+        )
+    }
+
+    if (!session) {
+        return <LoginScreen />
+    }
+
+    return (
+        <View
+            style={{
+                flex: 1,
+                backgroundColor: colors.background,
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+        >
+            <ActivityIndicator color="#FFF" />
+        </View>
+    )
 }

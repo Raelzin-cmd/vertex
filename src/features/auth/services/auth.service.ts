@@ -23,3 +23,16 @@ export async function signUp({
 
     return response
 }
+
+export async function signIn(email: string, password: string) {
+    const response = await supabase.auth.signInWithPassword({
+        email,
+        password
+    })
+
+    return response
+}
+
+export async function logout() {
+    return await supabase.auth.signOut()
+}
